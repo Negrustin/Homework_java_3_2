@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-// change radio station tests
+//radio station tests
 public class RadioTest {
     @Test
-    public void getCurrentRadioStation() {
+    public void getCurrentRadioStationNumber() {
         Radio radio = new Radio();
 
         int expected = 0;
@@ -16,7 +16,7 @@ public class RadioTest {
 
     @Test
 
-    public void nextRadioStationNumberStart() {
+    public void nextRadioStationNumber() {
         Radio radio = new Radio();
         radio.nextRadioStationNumber();
 
@@ -28,7 +28,7 @@ public class RadioTest {
 
     @Test
 
-    public void nextRadioStationNumberBetween() {
+    public void nextRadioStationNumberBetweenBorders() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(5);
         radio.nextRadioStationNumber();
@@ -41,7 +41,7 @@ public class RadioTest {
 
     @Test
 
-    public void nextRadioStationNumberEnd() {
+    public void nextRadioStationNumberAboveUpperLimit() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(9);
         radio.nextRadioStationNumber();
@@ -53,7 +53,7 @@ public class RadioTest {
     }
 
     @Test
-    public void setRadioStationNumberOutOfRange() {
+    public void setRadioStationNumberAboveUpperLimit() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(5);
         radio.setRadioStationNumber(10);
@@ -100,7 +100,7 @@ public class RadioTest {
     }
 
     @Test
-    public void setCurrentRadioStationTest() {
+    public void setCurrentRadioStationNumberLessLowerLimit() {
         Radio radio = new Radio();
         radio.setRadioStationNumber(-1);
 
@@ -110,7 +110,7 @@ public class RadioTest {
         Assertions.assertEquals(excepted, actual);
     }
 
-    //change Volume tests
+    //Volume tests
     @Test
     public void increaseVolume() {
         Radio radio = new Radio();
@@ -134,7 +134,7 @@ public class RadioTest {
     }
 
     @Test
-    public void increaseVolumeMax() {
+    public void increaseVolumeAboveUpperLimit() {
         Radio radio = new Radio();
         radio.setVolume(10);
         radio.increaseVolume();
@@ -146,11 +146,9 @@ public class RadioTest {
     }
 
     @Test
-    public void increaseVolumeMin() {
+    public void increaseVolumeLessLowerLimit() {
         Radio radio = new Radio();
         radio.decreaseVolume();
-        radio.decreaseVolume();
-
 
         int excepted = 0;
         int actual = radio.getCurrentVolume();
@@ -158,7 +156,7 @@ public class RadioTest {
         Assertions.assertEquals(excepted, actual);
     }
     @Test
-    public void increaseVolumeLessBetween() {
+    public void decreaseVolumeBetweenBorders() {
         Radio radio = new Radio();
         radio.setVolume(6);
         radio.decreaseVolume();
@@ -167,5 +165,26 @@ public class RadioTest {
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(excepted, actual);
+    }
+    @Test
+    public void setVolumeLessLowerBorder(){
+        Radio radio = new Radio();
+        radio.setVolume(-1);
+
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void setVolumeMoreUpperLimit(){
+        Radio radio = new Radio();
+        radio.setVolume(11);
+
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected,actual);
     }
 }

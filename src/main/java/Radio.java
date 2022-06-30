@@ -53,8 +53,11 @@ public class Radio {
     }
 
     public void setVolume(int currentVolume) {
-
+        if (currentVolume >= 0 && currentVolume <= 10) {
             this.currentVolume = currentVolume;
+        } else {
+            return;
+        }
 
     }
 
