@@ -1,3 +1,4 @@
+package ru.netology.radio;
 public class Radio {
     int currentRadioStationNumber;
     int currentVolume;
