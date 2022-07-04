@@ -1,8 +1,36 @@
 package ru.netology.radio;
 
+import javax.xml.stream.XMLInputFactory;
+
 public class Radio {
+    private int minRadioStationNumber;
+    private int radioCount = 10;
+    private int maxRadioStationNumber = radioCount - 1;
+
     private int currentRadioStationNumber;
     private int currentVolume;
+    private int minVolume = 0;
+    private int maxVolume = 100;
+
+    public Radio() {
+    }
+
+    public Radio(int radioCount) {
+        if (radioCount <= minRadioStationNumber) {
+            System.out.println("вы не можкете установить количество радиостанций  меньше 1, количество останется без изменений, равным: " + getRadioCount());
+            return;
+        }
+        this.radioCount = radioCount;
+        this.maxRadioStationNumber = radioCount - 1;
+    }
+
+    public int getRadioCount() {
+        return radioCount;
+    }
+
+    public int getMaxRadioStationNumber() {
+        return maxRadioStationNumber;
+    }
 
     public int getCurrentRadioStationNumber() {
 
@@ -10,24 +38,24 @@ public class Radio {
     }
 
     public void nextRadioStationNumber() {
-        if (currentRadioStationNumber < 9) {
+        if (currentRadioStationNumber < maxRadioStationNumber) {
             currentRadioStationNumber++;
         } else {
-            currentRadioStationNumber = 0;
+            currentRadioStationNumber = minRadioStationNumber;
         }
     }
 
     public void prevRadioStationNumber() {
-        if (currentRadioStationNumber > 0) {
+        if (currentRadioStationNumber > minRadioStationNumber) {
             currentRadioStationNumber--;
         } else {
-            currentRadioStationNumber = 9;
+            currentRadioStationNumber = maxRadioStationNumber;
         }
 
     }
 
     public void setRadioStationNumber(int radioStationNumber) {
-        if (radioStationNumber >= 0 && radioStationNumber <= 9) {
+        if (radioStationNumber >= minRadioStationNumber && radioStationNumber <= maxRadioStationNumber) {
             this.currentRadioStationNumber = radioStationNumber;
         } else {
             return;
@@ -35,11 +63,12 @@ public class Radio {
     }
 
     int getCurrentVolume() {
+
         return this.currentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < maxVolume) {
             currentVolume++;
         } else {
             return;
@@ -47,7 +76,7 @@ public class Radio {
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume--;
         } else {
             return;
@@ -55,7 +84,7 @@ public class Radio {
     }
 
     public void setVolume(int currentVolume) {
-        if (currentVolume >= 0 && currentVolume <= 10) {
+        if (currentVolume >= minVolume && currentVolume <= maxVolume) {
             this.currentVolume = currentVolume;
         } else {
             return;
