@@ -1,7 +1,13 @@
 package ru.netology.radio;
 
-import javax.xml.stream.XMLInputFactory;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.xml.stream.XMLInputFactory;
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Radio {
     private int minRadioStationNumber;
     private int radioCount = 10;
@@ -11,9 +17,6 @@ public class Radio {
     private int currentVolume;
     private int minVolume = 0;
     private int maxVolume = 100;
-
-    public Radio() {
-    }
 
     public Radio(int radioCount) {
         if (radioCount <= minRadioStationNumber) {
@@ -25,17 +28,15 @@ public class Radio {
     }
 
     public int getRadioCount() {
+
         return radioCount;
     }
 
-    public int getMaxRadioStationNumber() {
-        return maxRadioStationNumber;
-    }
 
-    public int getCurrentRadioStationNumber() {
-
-        return this.currentRadioStationNumber;
-    }
+//    public int getCurrentRadioStationNumber() {
+//
+//        return this.currentRadioStationNumber;
+//    }
 
     public void nextRadioStationNumber() {
         if (currentRadioStationNumber < maxRadioStationNumber) {
@@ -62,10 +63,10 @@ public class Radio {
         }
     }
 
-    int getCurrentVolume() {
-
-        return this.currentVolume;
-    }
+//    int getCurrentVolume() {
+//
+//        return this.currentVolume;
+//    }
 
     public void increaseVolume() {
         if (currentVolume < maxVolume) {
