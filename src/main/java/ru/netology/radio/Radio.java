@@ -27,16 +27,6 @@ public class Radio {
         this.maxRadioStationNumber = radioCount - 1;
     }
 
-    public int getRadioCount() {
-
-        return radioCount;
-    }
-
-
-//    public int getCurrentRadioStationNumber() {
-//
-//        return this.currentRadioStationNumber;
-//    }
 
     public void nextRadioStationNumber() {
         if (currentRadioStationNumber < maxRadioStationNumber) {
@@ -63,10 +53,6 @@ public class Radio {
         }
     }
 
-//    int getCurrentVolume() {
-//
-//        return this.currentVolume;
-//    }
 
     public void increaseVolume() {
         if (currentVolume < maxVolume) {
