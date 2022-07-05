@@ -2,11 +2,43 @@ package ru.netology.radio;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 //radio station tests
 public class RadioTest {
+    Radio radio = new Radio();
+
+    @Test
+
+    public void changeRadioStationCount() {
+        Radio radio = new Radio(20);
+        radio.nextRadioStationNumber();
+
+        int excepted = 20;
+        int actual = radio.getRadioCount();
+
+        Assertions.assertEquals(excepted, actual);
+
+    }
+
+    @Test
+    public void changeRadioStationNumberLessZero() {
+        Radio radio = new Radio(-1);
+
+        int excepted = 10;
+        int actual = radio.getRadioCount();
+    }
+
+    @Test
+    public void changeRadioStationNumberEqualZero() {
+        Radio radio = new Radio(0);
+
+        int excepted = 10;
+        int actual = radio.getRadioCount();
+    }
+
+
     @Test
     public void getCurrentRadioStationNumber() {
-        Radio radio = new Radio();
 
         int expected = 0;
         int actual = radio.getCurrentRadioStationNumber();
@@ -19,7 +51,7 @@ public class RadioTest {
     @Test
 
     public void nextRadioStationNumber() {
-        Radio radio = new Radio();
+
         radio.nextRadioStationNumber();
 
         int excepted = 1;
@@ -31,7 +63,7 @@ public class RadioTest {
     @Test
 
     public void nextRadioStationNumberBetweenBorders() {
-        Radio radio = new Radio();
+
         radio.setRadioStationNumber(5);
         radio.nextRadioStationNumber();
 
@@ -44,7 +76,7 @@ public class RadioTest {
     @Test
 
     public void nextRadioStationNumberAboveUpperLimit() {
-        Radio radio = new Radio();
+
         radio.setRadioStationNumber(9);
         radio.nextRadioStationNumber();
 
@@ -56,7 +88,7 @@ public class RadioTest {
 
     @Test
     public void setRadioStationNumberAboveUpperLimit() {
-        Radio radio = new Radio();
+
         radio.setRadioStationNumber(5);
         radio.setRadioStationNumber(10);
 
@@ -69,7 +101,7 @@ public class RadioTest {
 
     @Test
     public void prevRadioStationStart() {
-        Radio radio = new Radio();
+
         radio.prevRadioStationNumber();
 
         int expected = 9;
@@ -80,7 +112,7 @@ public class RadioTest {
 
     @Test
     public void prevRadioStationBetween() {
-        Radio radio = new Radio();
+
         radio.setRadioStationNumber(6);
         radio.prevRadioStationNumber();
 
@@ -92,7 +124,7 @@ public class RadioTest {
 
     @Test
     public void setCurrentRadioStation() {
-        Radio radio = new Radio();
+
         radio.setRadioStationNumber(9);
 
         int excepted = 9;
@@ -102,8 +134,19 @@ public class RadioTest {
     }
 
     @Test
+    public void getMaxRadioStationNumber() {
+
+        radio.getMaxRadioStationNumber();
+
+        int excepted = 9;
+        int actual = radio.getMaxRadioStationNumber();
+
+        Assertions.assertEquals(excepted, actual);
+    }
+
+    @Test
     public void setCurrentRadioStationNumberLessLowerLimit() {
-        Radio radio = new Radio();
+
         radio.setRadioStationNumber(-1);
 
         int excepted = 0;
@@ -112,10 +155,10 @@ public class RadioTest {
         Assertions.assertEquals(excepted, actual);
     }
 
-    //Volume tests
+    ////////////////Volume tests////////////////////
     @Test
     public void increaseVolume() {
-        Radio radio = new Radio();
+
         radio.increaseVolume();
 
         int excepted = 1;
@@ -126,7 +169,7 @@ public class RadioTest {
 
     @Test
     public void decreaseVolume() {
-        Radio radio = new Radio();
+
         radio.decreaseVolume();
 
         int excepted = 0;
@@ -137,11 +180,11 @@ public class RadioTest {
 
     @Test
     public void increaseVolumeAboveUpperLimit() {
-        Radio radio = new Radio();
-        radio.setVolume(10);
+
+        radio.setVolume(100);
         radio.increaseVolume();
 
-        int excepted = 10;
+        int excepted = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(excepted, actual);
@@ -149,7 +192,7 @@ public class RadioTest {
 
     @Test
     public void increaseVolumeLessLowerLimit() {
-        Radio radio = new Radio();
+
         radio.decreaseVolume();
 
         int excepted = 0;
@@ -157,36 +200,38 @@ public class RadioTest {
 
         Assertions.assertEquals(excepted, actual);
     }
+
     @Test
     public void decreaseVolumeBetweenBorders() {
-        Radio radio = new Radio();
-        radio.setVolume(6);
+
+        radio.setVolume(50);
         radio.decreaseVolume();
 
-        int excepted = 5;
+        int excepted = 49;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(excepted, actual);
     }
+
     @Test
-    public void setVolumeLessLowerBorder(){
-        Radio radio = new Radio();
+    public void setVolumeLessLowerBorder() {
+
         radio.setVolume(-1);
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
 
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void setVolumeMoreUpperLimit(){
-        Radio radio = new Radio();
-        radio.setVolume(11);
+    public void setVolumeMoreUpperLimit() {
+
+        radio.setVolume(101);
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
 
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(expected, actual);
     }
 }
